@@ -1,6 +1,15 @@
-# Sims Translator Manager (preview)
+# Sims Translator Manager
 
-This branch adds a new desktop translation manager on top of the existing SimsSTBL package/STBL implementation. The original `main.py` application is left untouched.
+This desktop translation manager reuses the SimsSTBL package/STBL code. The original editor launched with `main.py` remains available.
+
+## Interface
+
+The manager has two work areas, following the navigation and dark visual style of the inZOI Translator:
+
+- **Mods**: choose the Sims 4 `Mods` folder, search detected mods, see translation progress and installed translation packages, and install patches.
+- **Traduction**: search a selected mod's strings, compare the English source with the target language, and edit translations. Changes are saved to the local database as you type.
+
+Installed translation packages are matched to their source mods by STBL resource identity and imported automatically. Select a mod and choose **Traduire le mod** (or double-click it) to see its original and translated strings. Installing creates or updates a package for the selected target language under `z_Translations`.
 
 ## Start
 
@@ -9,17 +18,27 @@ pip install -r requirements.txt
 python sims_manager.py
 ```
 
-The default folder is:
+On Windows, the manager checks the redirected Documents folder (including OneDrive) for either `The Sims 4` or `Les Sims 4`, then uses its `Mods` subfolder. If found, it starts scanning automatically.
+
+You can edit the folder path directly or choose it with **Browse**. The selection is saved in the application settings and reused on the next launch.
+
+If no folder is detected, the conventional location is:
 
 ```text
 Documents\Electronic Arts\The Sims 4\Mods
 ```
 
-You can choose another Mods folder from the UI.
+The scan checks package indexes concurrently and shows its progress. The default view groups packages by their first-level folder to keep large Mods folders readable; switch to package view in **Paramètres** when needed.
 
 ## Mod list behavior
 
-The scanner is intentionally root-oriented so a large Sims 4 Mods folder does not become an enormous flat file list.
+By default (**Vue : Par dossier**), the manager groups packages by their first-level source folder.
+
+You can switch the view mode in the toolbar between:
+- **Vue : Par dossier**: groups packages by top-level subfolder and combines their STBL strings.
+- **Vue : Mods (.package)**: lists each `.package` containing STBL resources separately.
+
+Searching matches both the mod name and its folder path. `z_Translations` is always excluded from source mods and handled as the translation patch library.
 
 Given:
 
@@ -51,7 +70,7 @@ Root-level `.package` files are grouped under the virtual **Mods (root)** entry.
 
 ## Fast scan and cache
 
-The first pass reads only the DBPF index and checks for STBL resource IDs. It does not decode every string at startup.
+The scan reads DBPF indexes concurrently and checks for STBL resource IDs. It does not decode every source string at startup. Translation STBLs are decoded during the same scan so their translated text and source-mod match are ready when the editor opens.
 
 Package probe results are cached by:
 
@@ -60,7 +79,7 @@ Package probe results are cached by:
 - `mtime_ns`
 - discovered STBL resource IDs
 
-Unchanged packages are not re-probed on the next scan. Full STBL content is decoded lazily when a mod is opened, when a translation file is imported, or when a patch is built.
+Unchanged packages are not reopened on the next scan. Full source STBL content is decoded when a mod is opened or when a patch is built.
 
 The cache and translation database live in:
 
@@ -84,7 +103,7 @@ A translated STBL is linked to its source STBL by canonical resource identity:
 Type + Group + Instance without the language byte
 ```
 
-This means detection does **not** depend on translation filenames. A package called `whatever_final_v7.package` can still be recognized as translating a source mod.
+This means detection does **not** depend on translation filenames. A package called `whatever_final_v7.package` can still be recognized as translating a source mod. Matching strings are imported into the local database automatically, so the translated count and editor are populated without a separate import step.
 
 The French language byte is `0x07`; English US is `0x00`.
 
@@ -124,17 +143,17 @@ Every source English STBL for that root mod is reproduced as its French resource
 
 Original mod packages are never modified.
 
-## Current preview scope
+## Scope
 
-This first manager version focuses on the core workflow:
+The manager supports:
 
 - root-folder mod discovery;
 - STBL-only filtering;
-- fast cached scans;
+- parallel cached scans;
 - arbitrary installed translation detection;
 - persistent translation storage;
 - translation package import;
 - multi-selection patch install/update;
 - one patch package per root mod in `z_Translations`.
 
-The old SimsSTBL editor remains available through `main.py` while this manager is validated on real Mods folders.
+The original SimsSTBL editor remains available through `main.py`.

@@ -85,6 +85,20 @@ class SimsTranslatorCoreTests(unittest.TestCase):
         match = _best_source_for_translation(translated, [], [source_a, source_b])
         self.assertIs(match, source_a)
 
+    def test_mod_root_folder_relative_default(self):
+        from sims_translator.core import ModRoot
+        root = ModRoot(root_id="test", label="Test", path=Path("test.package"), folder_relative="[0] - Buy")
+        self.assertEqual(root.folder_relative, "[0] - Buy")
+
+    def test_is_translation_package(self):
+        from sims_translator.core import is_translation_package
+        en_res = ResourceRef(0x220557DA, 0, 0x00123456789ABCDE)
+        fr_res = ResourceRef(0x220557DA, 0, 0x07123456789ABCDE)
+
+        self.assertFalse(is_translation_package(Path("mod.package"), [en_res], Path(".")))
+        self.assertTrue(is_translation_package(Path("!Kiara - Traduction FR.package"), [fr_res], Path(".")))
+        self.assertTrue(is_translation_package(Path("traduction.package"), [fr_res], Path("."), target_language=LANG_FR_FR))
+
 
 if __name__ == "__main__":
     unittest.main()

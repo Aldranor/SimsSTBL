@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "s4py"
+version = "0.1"
+description = "Sims 4 package and resource reader used by SimsSTBL"
+requires-python = ">=3.10"
+dependencies = ["click>=8", "PyYAML>=6"]
+
+[tool.setuptools.packages.find]
+where = ["."]
