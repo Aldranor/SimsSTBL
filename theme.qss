@@ -1,0 +1,220 @@
+* {
+    font-family: "Segoe UI";
+    font-size: 10pt;
+}
+QMainWindow, QWidget#root {
+    background: #111318;
+    color: #E9ECF2;
+}
+QFrame#sidebar {
+    background: #171A21;
+    border-right: 1px solid #282C36;
+}
+QLabel#brand {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+QLabel#brandSub {
+    color: #9299AA;
+    font-size: 9pt;
+}
+QPushButton#navButton {
+    text-align: left;
+    padding: 11px 14px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #B9C0D0;
+    font-weight: 600;
+}
+QPushButton#navButton:hover {
+    background: #212530;
+    color: #FFFFFF;
+}
+QPushButton#navButton:checked {
+    background: #7568F5;
+    color: #FFFFFF;
+}
+QFrame#topbar {
+    background: #111318;
+    border-bottom: 1px solid #242833;
+}
+QLabel#pageTitle {
+    font-size: 17pt;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+QLabel#muted, QLabel.muted {
+    color: #9299AA;
+}
+QFrame#card {
+    background: #181B22;
+    border: 1px solid #2A2E38;
+    border-radius: 12px;
+}
+QLabel#cardValue {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+QLabel#cardLabel {
+    color: #9299AA;
+    font-size: 9pt;
+}
+QPushButton, QToolButton {
+    padding: 8px 13px;
+    border-radius: 8px;
+    border: 1px solid #363B49;
+    background: #222631;
+    color: #E9ECF2;
+    font-weight: 600;
+}
+QPushButton:hover, QToolButton:hover {
+    background: #2A2F3B;
+    border-color: #4A5060;
+}
+QPushButton:pressed, QToolButton:pressed {
+    background: #1D2028;
+}
+QToolButton::menu-indicator {
+    image: none;
+    width: 0px;
+}
+QPushButton#primaryButton {
+    background: #7568F5;
+    border-color: #7568F5;
+    color: white;
+}
+QPushButton#primaryButton:hover {
+    background: #867AF8;
+}
+QPushButton#dangerButton {
+    color: #FF9DA3;
+    border-color: #6A3438;
+}
+QLineEdit, QComboBox, QSpinBox, QPlainTextEdit, QTextEdit {
+    background: #171A21;
+    color: #E9ECF2;
+    border: 1px solid #343947;
+    border-radius: 8px;
+    padding: 7px 9px;
+    selection-background-color: #7568F5;
+}
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QPlainTextEdit:focus, QTextEdit:focus {
+    border-color: #7568F5;
+}
+QComboBox QAbstractItemView {
+    background: #1B1E26;
+    color: #E9ECF2;
+    border: 1px solid #343947;
+    selection-background-color: #7568F5;
+}
+QTableWidget, QTableView {
+    background: #15181E;
+    alternate-background-color: #181B22;
+    color: #E9ECF2;
+    border: 1px solid #2A2E38;
+    border-radius: 10px;
+    gridline-color: #262A33;
+    selection-background-color: #37315F;
+    selection-color: #FFFFFF;
+}
+QHeaderView::section {
+    background: #1D2028;
+    color: #AEB5C5;
+    border: 0;
+    border-bottom: 1px solid #303541;
+    padding: 8px;
+    font-weight: 700;
+}
+QTableCornerButton::section {
+    background: #1D2028;
+    border: 0;
+}
+QScrollBar:vertical {
+    background: #15181E;
+    width: 11px;
+    margin: 2px;
+}
+QScrollBar::handle:vertical {
+    background: #3B4150;
+    min-height: 30px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #51586A;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+}
+QSplitter::handle {
+    background: #272B35;
+    width: 1px;
+    height: 1px;
+}
+QStatusBar {
+    background: #171A21;
+    color: #9299AA;
+    border-top: 1px solid #282C36;
+}
+QLabel#warningBanner {
+    background: #3A2F18;
+    color: #FFD78A;
+    border: 1px solid #6A5422;
+    border-radius: 9px;
+    padding: 10px 12px;
+}
+QLabel#successBadge {
+    color: #85E0A3;
+    background: #173422;
+    border-radius: 7px;
+    padding: 3px 8px;
+}
+QLabel#infoBadge {
+    color: #B5AEFF;
+    background: #28244A;
+    border-radius: 7px;
+    padding: 3px 8px;
+}
+QLabel#dangerBadge {
+    color: #FF9DA3;
+    background: #3D2024;
+    border-radius: 7px;
+    padding: 3px 8px;
+}
+QToolTip {
+    color: #FFFFFF;
+    background: #232732;
+    border: 1px solid #3B4150;
+    padding: 5px;
+}
+QLabel#sectionTitle {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+QGroupBox {
+    color: #AEB5C5;
+    font-weight: 700;
+    border: 1px solid #2A2E38;
+    border-radius: 9px;
+    margin-top: 10px;
+    padding: 10px 8px 8px 8px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+}
+QProgressBar {
+    background: #222631;
+    color: #FFFFFF;
+    border: 1px solid #363B49;
+    border-radius: 6px;
+    text-align: center;
+}
+QProgressBar::chunk {
+    background: #7568F5;
+    border-radius: 5px;
+}
